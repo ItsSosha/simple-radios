@@ -1,0 +1,8 @@
+
+.panel {
+    margin: 25px 40px 25px 25px;
+    background-color: chocolate;
+    border-radius: 10px;
+    width: 60%;
+    height: 80%;
+}

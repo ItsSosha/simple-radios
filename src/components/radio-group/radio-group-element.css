@@ -1,0 +1,8 @@
+.radio-group-element {
+    text-align: center;
+    display: inline-block;
+}
+
+.radio-group-element label{
+    display: block;
+}
