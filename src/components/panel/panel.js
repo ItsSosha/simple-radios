@@ -8,23 +8,24 @@ margin: 25px 40px 25px 25px;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: ${props => props.theme.secondary2};
+background-color: ${props => props.theme.secondary};
 border-radius: 10px;
 width: 60%;
 height: 80%;
-color: ${props => props.theme.font2};
+color: ${props => props.theme.font};
 font-size: 30px;
+font-family: 'Montserrat', sans-serif;
+`
+// font-family: consolas;
 // font-family: 'Montserrat', sans-serif;
 // font-family: 'Source Sans Pro', sans-serif;
-font-family: consolas
-`
 
 export default function Panel() {
 
     const theme = useContext(ThemeContext);
 
     return (
-        <StyledPanel theme={theme}>
+        <StyledPanel theme={theme.theme}>
             <p>Themed panel text</p>
         </StyledPanel>
     )

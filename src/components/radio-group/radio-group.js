@@ -1,21 +1,18 @@
 import RadioGroupElement from "./radio-group-element";
+import { ThemeContext } from "../app/app";
 import "./radio-group.css"
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 export default function RadioGroup({themes}) {
-    const [checked, setChecked] = useState(0);
 
-    const handleClick = id => {
-        setChecked(id);
+    const selectedTheme = useContext(ThemeContext);
+
+    const buttons = themes.map(theme => {
+        const checked = theme.name == selectedTheme.theme.name
+        return (
+            <RadioGroupElement id={theme.name} checked={checked ? true : false} theme={theme}/>
+        );
     }
-
-    const themesObj = Object.entries(themes);
-
-    const buttons = Object.entries(themes).map((theme, index) => {
-            return (
-                <RadioGroupElement id={"theme-" + index} handleClick={handleClick} theme={theme} checked={checked == index ? true : false}/>
-            );
-        }
     );
 
     return (

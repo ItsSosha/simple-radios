@@ -26,14 +26,15 @@ const Content = styled.div`
 
 
 export default function App() {
-    const [theme, setTheme] = useState('dark')
-
+    const [selectedTheme, setSelectedTheme] = useState('light')
+    const themeInxex = themes.findIndex(theme => theme.name == selectedTheme);
     return (
-        <ThemeContext.Provider value={themes[theme]}>
+        <ThemeContext.Provider 
+            value={{theme: themes[themeInxex], setSelectedTheme}}>
             <AppWrapper>
-                <Content theme={themes[theme]}>
+                <Content theme={themes[themeInxex]}>
                     <Panel />
-                    <RadioGroup themes={themes}/>
+                    <RadioGroup selectedTheme={selectedTheme} themes={themes}/>
                 </Content>
             </AppWrapper>
         </ThemeContext.Provider>

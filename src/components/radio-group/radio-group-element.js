@@ -1,5 +1,7 @@
 import "./radio-group-element.css"
 import styled from "styled-components"
+import { ThemeContext } from "../app/app"
+import { useContext } from "react"
 
 
 const ButtonWrapper = styled.div`
@@ -14,7 +16,7 @@ const ButtonWrapper = styled.div`
     }
 
     & > input[type="radio"] ~ label {
-        color: ${props => props.theme.secondary2};
+        color: ${props => props.theme.secondary};
     }
 
     & > input[type="radio"] ~ label::before {
@@ -24,7 +26,7 @@ const ButtonWrapper = styled.div`
         border-radius: 50%;
         width: .8em;
         height: .8em;
-        border: 2px ${props => props.theme.secondary2} solid;
+        border: 2px ${props => props.theme.secondary} solid;
         transition: .250s ease;
     }
 
@@ -35,29 +37,22 @@ const ButtonWrapper = styled.div`
         border-radius: 100%;
         width: .8em;
         height: .8em;
-        border: 2px ${props => props.theme.secondary2} solid;
+        border: 2px ${props => props.theme.secondary} solid;
         background-color: ${props => props.theme.main};
-        box-shadow: inset 0 0 0 2px ${props => props.theme.font2};
+        box-shadow: inset 0 0 0 2px ${props => props.theme.font};
         
     }
 `
 
-export default function RadioGroupElement({id, handleClick, theme, checked}) {
-    // return (
-    //     <div className="radio-group-element">
-    //         <input type="radio" id={"theme-" + id} name="theme" onClick={e => handleClick(e.target.id)}/>
-            
-    //         <label htmlFor={"theme-" + id}>
-    //             {"theme " + id}
-    //         </label>
-    //     </div>
-    // );
+export default function RadioGroupElement({id, checked, theme}) {
+
+    const selectedTheme = useContext(ThemeContext);
 
     return (
-        <ButtonWrapper theme={theme[1]}>
-            <input type="radio" id={id} name="theme" checked={checked} onClick={e => handleClick(e.target.id)}/>
+        <ButtonWrapper theme={theme}>
+            <input type="radio" id={id} name="theme" checked={checked} onChange={e => selectedTheme.setSelectedTheme(e.target.id)}/>
             <label htmlFor={id}>
-                {theme[0]}
+                {id}
             </label> 
         </ButtonWrapper>
     )
